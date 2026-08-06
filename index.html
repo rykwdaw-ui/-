@@ -4,15 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حركة همم - نظام الأرشفة الموحد وإدارة الطلبات</title>
-    const firebaseConfig = {
-  apiKey: "AIzaSyA2PJTCkIl1DehcLLK_Wpy4X-QTVG4ycH0",
-  authDomain: "hmm-ecc74.firebaseapp.com",
-  projectId: "hmm-ecc74",
-  storageBucket: "hmm-ecc74.firebasestorage.app",
-  messagingSenderId: "1092745287735",
-  appId: "1:1092745287735:web:9b4dfc790d16fd77b507b2",
-  measurementId: "G-PSJZ2V748F"
-};
+<!-- Firebase SDK (v10) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { 
+            getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp 
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA2PJTCkI11DehcLLK_Wpy4X-QTVG4ycH0",
+            authDomain: "hmm-ecc74.firebaseapp.com",
+            projectId: "hmm-ecc74",
+            storageBucket: "hmm-ecc74.firebasestorage.app",
+            messagingSenderId: "1092745287735",
+            appId: "1:1092745287735:web:9b4dfc790d16fd77b507b2",
+            measurementId: "G-PSJZ2V748F"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ربط الفايربيس بالنظام
+        window.fbDB = db;
+        window.fbSDK = { collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp };
+        window.dispatchEvent(new Event('firebaseReady'));
+    </script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
